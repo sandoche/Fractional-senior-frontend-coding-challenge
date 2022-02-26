@@ -6,7 +6,7 @@
 
 ## Basic
 
-A. See the `insertionSort` function in the [sortings.js](docs/01_Basic_A/sortings.js) file.
+A. See the `insertionSort` function in the [sortings.js](docs/01_Basic_A/sorting.js) file.
 I commented the code to explain the different steps. By running `npm run basic:a` you can get the estimation of executing the `insertionSort` function 10 billion of times.
 
 Output example:

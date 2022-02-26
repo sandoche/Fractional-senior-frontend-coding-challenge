@@ -91,7 +91,7 @@
                 >
               </p>
             </nuxt-link>
-            <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+            <div class="desktop-menu hidden sm:ml-6 sm:flex sm:space-x-8">
               <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
               <nuxt-link
                 to="/"
@@ -177,15 +177,12 @@
     </base-container>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div id="mobile-menu" class="sm:hidden">
+    <div id="mobile-menu" class="mobile-menu sm:hidden">
       <div class="pt-2 pb-4 space-y-1">
         <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
         <nuxt-link
           to="/"
           class="
-            bg-indigo-50
-            border-indigo-500
-            text-indigo-700
             block
             pl-3
             pr-4
@@ -193,15 +190,15 @@
             border-l-4
             text-base
             font-medium
+            border-transparent
+            text-gray-500
+            hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
           "
           >{{ $t('navigation.coins') }}</nuxt-link
         >
         <nuxt-link
           to="/favourites"
           class="
-            border-transparent
-            text-gray-500
-            hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
             block
             pl-3
             pr-4
@@ -209,6 +206,9 @@
             border-l-4
             text-base
             font-medium
+            border-transparent
+            text-gray-500
+            hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
           "
           >{{ $t('navigation.favourites') }}</nuxt-link
         >
@@ -218,11 +218,11 @@
 </template>
 
 <style lang="postcss" scoped>
-/* a.nuxt-link-active {
-  @apply border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700;
-} */
-
-a.nuxt-link-exact-active {
+.desktop-menu a.nuxt-link-exact-active {
   @apply border-indigo-500 text-gray-900;
+}
+
+.mobile-menu a.nuxt-link-exact-active {
+  @apply bg-indigo-50 border-indigo-500 text-indigo-700;
 }
 </style>

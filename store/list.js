@@ -25,7 +25,7 @@ export const getters = {
 export const actions = {
   async fetchCoins({ commit }) {
     try {
-      commit(LIST_SET_ERROR, true)
+      commit(LIST_SET_ERROR, false)
       commit(LIST_SET_LOADING, true)
       const coins = await api.list.fetchCoins(this.$axios)
       commit(LIST_SET_COINS, coins)

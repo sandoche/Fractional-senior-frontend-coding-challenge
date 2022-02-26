@@ -47,6 +47,8 @@ initState('email@email.com')
 
 ## Practical
 
+### How to run
+
 ```bash
 # install dependencies
 $ npm install
@@ -61,3 +63,7 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
+
+### Project description
+
+> Work in progress

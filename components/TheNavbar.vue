@@ -79,25 +79,23 @@
               sm:items-stretch sm:justify-start
             "
           >
-            <div class="flex-shrink-0 flex items-center">
+            <nuxt-link to="/" class="flex-shrink-0 flex items-center">
               <img
-                class="block lg:hidden h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                alt="Workflow"
+                class="block h-6 w-auto rounded-full"
+                src="/icon.png"
+                alt="CoinSlim"
               />
-              <img
-                class="hidden lg:block h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
-                alt="Workflow"
-              />
-            </div>
+              <p class="hidden lg:block ml-3">
+                <span class="font-semibold text-xl tracking-tight"
+                  >CoinSlim</span
+                >
+              </p>
+            </nuxt-link>
             <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
               <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-              <a
-                href="#"
+              <nuxt-link
+                to="/"
                 class="
-                  border-indigo-500
-                  text-gray-900
                   inline-flex
                   items-center
                   px-1
@@ -105,16 +103,16 @@
                   border-b-2
                   text-sm
                   font-medium
-                "
-              >
-                {{ $t('navigation.coins') }}
-              </a>
-              <a
-                href="#"
-                class="
                   border-transparent
                   text-gray-500
                   hover:border-gray-300 hover:text-gray-700
+                "
+              >
+                {{ $t('navigation.coins') }}
+              </nuxt-link>
+              <nuxt-link
+                to="/favourites"
+                class="
                   inline-flex
                   items-center
                   px-1
@@ -122,10 +120,13 @@
                   border-b-2
                   text-sm
                   font-medium
+                  border-transparent
+                  text-gray-500
+                  hover:border-gray-300 hover:text-gray-700
                 "
               >
                 {{ $t('navigation.favourites') }}
-              </a>
+              </nuxt-link>
             </div>
           </div>
           <div
@@ -176,11 +177,11 @@
     </base-container>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div class="sm:hidden" id="mobile-menu">
+    <div id="mobile-menu" class="sm:hidden">
       <div class="pt-2 pb-4 space-y-1">
         <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
-        <a
-          href="#"
+        <nuxt-link
+          to="/"
           class="
             bg-indigo-50
             border-indigo-500
@@ -193,10 +194,10 @@
             text-base
             font-medium
           "
-          >{{ $t('navigation.coins') }}</a
+          >{{ $t('navigation.coins') }}</nuxt-link
         >
-        <a
-          href="#"
+        <nuxt-link
+          to="/favourites"
           class="
             border-transparent
             text-gray-500
@@ -209,9 +210,19 @@
             text-base
             font-medium
           "
-          >{{ $t('navigation.favourites') }}</a
+          >{{ $t('navigation.favourites') }}</nuxt-link
         >
       </div>
     </div>
   </nav>
 </template>
+
+<style lang="postcss" scoped>
+/* a.nuxt-link-active {
+  @apply border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700;
+} */
+
+a.nuxt-link-exact-active {
+  @apply border-indigo-500 text-gray-900;
+}
+</style>

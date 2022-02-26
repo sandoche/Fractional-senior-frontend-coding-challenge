@@ -1,43 +1,103 @@
 <template>
   <tr>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+      {{ rank }}
+    </td>
     <td class="px-6 py-4 whitespace-nowrap">
       <div class="flex items-center">
         <div class="flex-shrink-0 h-10 w-10">
-          <img class="h-10 w-10 rounded-full" src="aaaa" alt="" />
+          <img
+            class="h-10 w-10 rounded-full"
+            :src="image"
+            :alt="`icon ${name}`"
+          />
         </div>
         <div class="ml-4">
-          <div class="text-sm font-medium text-gray-900">aaaa</div>
-          <div class="text-sm text-gray-500">ssss</div>
+          <div class="text-sm font-medium text-gray-900">{{ name }}</div>
+          <div class="text-sm text-gray-500 uppercase">{{ symbol }}</div>
         </div>
       </div>
     </td>
     <td class="px-6 py-4 whitespace-nowrap">
-      <div class="text-sm text-gray-900">bbb</div>
-      <div class="text-sm text-gray-500">aaa</div>
+      <div class="text-sm text-gray-900">{{ price | formatDollar }}</div>
     </td>
     <td class="px-6 py-4 whitespace-nowrap">
-      <span
-        class="
-          px-2
-          inline-flex
-          text-xs
-          leading-5
-          font-semibold
-          rounded-full
-          bg-green-100
-          text-green-800
-        "
-      >
-        Active
-      </span>
+      <base-change-tag :change="priceChange24h" />
     </td>
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">xxx</td>
-    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-      <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+      {{ ath | formatDollar }}
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+      {{ athChange | formatPercentage }}
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+      {{ marketCap | formatDollar }}
     </td>
   </tr>
 </template>
 
 <script>
-export default {}
+export default {
+  filters: {
+    formatPercentage(value) {
+      return `${value.toFixed(2)}%`
+    },
+    formatDollar(num) {
+      const p = num.toFixed(2).split('.')
+      return (
+        '$' +
+        p[0]
+          .split('')
+          .reverse()
+          .reduce(function (acc, num, i, orig) {
+            return num + (num !== '-' && i && !(i % 3) ? ',' : '') + acc
+          }, '') +
+        '.' +
+        p[1]
+      )
+    }
+  },
+  props: {
+    id: {
+      type: String,
+      required: true
+    },
+    rank: {
+      type: Number,
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    symbol: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    },
+    priceChange24h: {
+      type: Number,
+      required: true
+    },
+    ath: {
+      type: Number,
+      required: true
+    },
+    athChange: {
+      type: Number,
+      required: true
+    },
+    marketCap: {
+      type: Number,
+      required: true
+    },
+    image: {
+      type: String,
+      required: true
+    }
+  }
+}
 </script>

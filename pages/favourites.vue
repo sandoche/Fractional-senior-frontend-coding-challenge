@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <pre>
     {{ coins }}
-  </div>
+  </pre>
 </template>
 
 <script>

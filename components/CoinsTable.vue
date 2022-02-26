@@ -20,7 +20,7 @@
                     tracking-wider
                   "
                 >
-                  Name
+                  #
                 </th>
                 <th
                   scope="col"
@@ -34,7 +34,7 @@
                     tracking-wider
                   "
                 >
-                  Title
+                  {{ $t('list.heading.coin') }}
                 </th>
                 <th
                   scope="col"
@@ -48,7 +48,7 @@
                     tracking-wider
                   "
                 >
-                  Status
+                  {{ $t('list.heading.price') }}
                 </th>
                 <th
                   scope="col"
@@ -62,17 +62,66 @@
                     tracking-wider
                   "
                 >
-                  Role
+                  {{ $t('list.heading.price_change_24h') }}
                 </th>
-                <th scope="col" class="relative px-6 py-3">
-                  <span class="sr-only">Edit</span>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  {{ $t('list.heading.ath') }}
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  {{ $t('list.heading.ath_change') }}
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    font-medium
+                    text-gray-500
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  {{ $t('list.heading.market_cap') }}
                 </th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
               <coins-table-item
-                v-for="(coin, index) in coins"
+                v-for="(coin, index) of coins"
+                :id="coin.id"
                 :key="index"
+                :rank="coin.market_cap_rank"
+                :name="coin.name"
+                :symbol="coin.symbol"
+                :price="coin.current_price"
+                :price-change24h="coin.price_change_percentage_24h"
+                :ath="coin.ath"
+                :ath-change="coin.ath_change_percentage"
+                :market-cap="coin.market_cap"
+                :image="coin.image"
               ></coins-table-item>
             </tbody>
           </table>

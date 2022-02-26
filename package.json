@@ -10,7 +10,8 @@
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
     "prepare": "husky install",
-    "lint": "npm run lint:js && npm run lint:style"
+    "lint": "npm run lint:js && npm run lint:style",
+    "basic:a": "node docs/01_Basic_A/sorting.js"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint",

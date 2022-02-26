@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ coins }}
+    <CoinsTable :coins="coins" :sorting="sorting" />
   </div>
 </template>
 

@@ -107,7 +107,7 @@
                   font-medium
                 "
               >
-                Coins
+                {{ $t('navigation.coins') }}
               </a>
               <a
                 href="#"
@@ -124,7 +124,7 @@
                   font-medium
                 "
               >
-                Favourites
+                {{ $t('navigation.favourites') }}
               </a>
             </div>
           </div>
@@ -193,7 +193,7 @@
             text-base
             font-medium
           "
-          >Coins</a
+          >{{ $t('navigation.coins') }}</a
         >
         <a
           href="#"
@@ -209,7 +209,7 @@
             text-base
             font-medium
           "
-          >Favourites</a
+          >{{ $t('navigation.favourites') }}</a
         >
       </div>
     </div>

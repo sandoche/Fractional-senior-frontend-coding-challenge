@@ -4,7 +4,8 @@ import {
   LIST_SET_COINS,
   LIST_APPLY_SORTING,
   LIST_SET_LOADING,
-  LIST_SET_ERROR
+  LIST_SET_ERROR,
+  LIST_TOGGLE_FAVORITE
 } from '@/constants/mutation-types'
 
 export const state = () => ({
@@ -42,6 +43,9 @@ export const actions = {
     } finally {
       commit(LIST_SET_LOADING, false)
     }
+  },
+  toggleFavorite({ commit }, id) {
+    commit(LIST_TOGGLE_FAVORITE, id)
   }
 }
 
@@ -57,5 +61,13 @@ export const mutations = {
   },
   [LIST_SET_ERROR](state, value) {
     state.error = value
+  },
+  [LIST_TOGGLE_FAVORITE](state, id) {
+    const index = state.favorites.indexOf(id)
+    if (index === -1) {
+      state.favorites.push(id)
+    } else {
+      state.favorites.splice(index, 1)
+    }
   }
 }

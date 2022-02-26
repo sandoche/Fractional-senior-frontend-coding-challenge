@@ -12,12 +12,17 @@
         'bg-green-100 text-green-800': change > 0
       }
     ]"
-    >{{ change }}%</span
+    >{{ change | formatPercentage }}</span
   >
 </template>
 
 <script>
+import formatPercentage from '@/filters/formatPercentage'
+
 export default {
+  filters: {
+    formatPercentage
+  },
   props: {
     change: {
       type: Number,

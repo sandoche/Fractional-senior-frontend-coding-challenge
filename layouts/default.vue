@@ -1,8 +1,8 @@
 <template>
-  <div class="bg-slate-100">
+  <div class="bg-slate-200">
     <TheNavbar />
     <base-container>
-      <main>
+      <main class="py-8">
         <Nuxt />
       </main>
     </base-container>

@@ -46,7 +46,9 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: 'https://api.coingecko.com/api/v3/'
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

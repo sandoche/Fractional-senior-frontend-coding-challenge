@@ -1,7 +1,12 @@
 <template>
-  <base-container>
-    <Nuxt />
-  </base-container>
+  <div>
+    <TheNavbar />
+    <base-container>
+      <main>
+        <Nuxt />
+      </main>
+    </base-container>
+  </div>
 </template>
 
 <script>

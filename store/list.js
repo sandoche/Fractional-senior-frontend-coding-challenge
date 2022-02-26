@@ -14,12 +14,20 @@ export const state = () => ({
     direction: 'asc'
   },
   loading: false,
-  error: false
+  error: false,
+  favorites: []
 })
 
 export const getters = {
   coins: (state) => state.coins,
-  sorting: (state) => state.sorting
+  sorting: (state) => state.sorting,
+  loading: (state) => state.loading,
+  error: (state) => state.error,
+  favorites: (state) => {
+    return state.coins.filter((coin) => {
+      return state.favorites.includes(coin.id)
+    })
+  }
 }
 
 export const actions = {

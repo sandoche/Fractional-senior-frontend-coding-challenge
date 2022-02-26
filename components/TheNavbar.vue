@@ -178,46 +178,52 @@
     </base-container>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div
-      id="mobile-menu"
-      :class="['mobile-menu', 'sm:hidden', { hidden: !menuOpen }]"
+    <transition
+      enter-active-class="transition ease-out duration-200"
+      enter-from-class="transform opacity-0 scale-95"
+      enter-to-class="transform opacity-100 scale-100"
+      leave-active-class="transition ease-in duration-75"
+      leave-from-class="transform opacity-100 scale-100"
+      leave-to-class="transform opacity-0 scale-95"
     >
-      <div class="pt-2 pb-4 space-y-1">
-        <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
-        <nuxt-link
-          to="/"
-          class="
-            block
-            pl-3
-            pr-4
-            py-2
-            border-l-4
-            text-base
-            font-medium
-            border-transparent
-            text-gray-500
-            hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
-          "
-          >{{ $t('navigation.coins') }}</nuxt-link
-        >
-        <nuxt-link
-          to="/favourites"
-          class="
-            block
-            pl-3
-            pr-4
-            py-2
-            border-l-4
-            text-base
-            font-medium
-            border-transparent
-            text-gray-500
-            hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
-          "
-          >{{ $t('navigation.favourites') }}</nuxt-link
-        >
+      <div v-if="menuOpen" id="mobile-menu" class="mobile-menu sm:hidden">
+        <div class="pt-2 pb-4 space-y-1">
+          <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
+          <nuxt-link
+            to="/"
+            class="
+              block
+              pl-3
+              pr-4
+              py-2
+              border-l-4
+              text-base
+              font-medium
+              border-transparent
+              text-gray-500
+              hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
+            "
+            >{{ $t('navigation.coins') }}</nuxt-link
+          >
+          <nuxt-link
+            to="/favourites"
+            class="
+              block
+              pl-3
+              pr-4
+              py-2
+              border-l-4
+              text-base
+              font-medium
+              border-transparent
+              text-gray-500
+              hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
+            "
+            >{{ $t('navigation.favourites') }}</nuxt-link
+          >
+        </div>
       </div>
-    </div>
+    </transition>
   </nav>
 </template>
 

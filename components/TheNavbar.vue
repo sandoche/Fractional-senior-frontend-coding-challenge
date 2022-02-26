@@ -92,7 +92,15 @@
                 >
               </p>
             </nuxt-link>
-            <div class="desktop-menu hidden sm:ml-6 sm:flex sm:space-x-8">
+            <div
+              class="
+                desktop-menu
+                hidden
+                sm:ml-6 sm:flex sm:space-x-8
+                flex-1
+                justify-center
+              "
+            >
               <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
               <nuxt-link
                 to="/"

@@ -23,6 +23,7 @@
               "
               aria-controls="mobile-menu"
               aria-expanded="false"
+              @click="toggleMenu"
             >
               <span class="sr-only">Open main menu</span>
               <!--
@@ -177,7 +178,10 @@
     </base-container>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div id="mobile-menu" class="mobile-menu sm:hidden">
+    <div
+      id="mobile-menu"
+      :class="['mobile-menu', 'sm:hidden', { hidden: !menuOpen }]"
+    >
       <div class="pt-2 pb-4 space-y-1">
         <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
         <nuxt-link
@@ -216,6 +220,21 @@
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      menuOpen: false
+    }
+  },
+  methods: {
+    toggleMenu() {
+      this.menuOpen = !this.menuOpen
+    }
+  }
+}
+</script>
 
 <style lang="postcss" scoped>
 .desktop-menu a.nuxt-link-exact-active {

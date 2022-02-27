@@ -6,7 +6,8 @@ import {
   COIN_SET_MARKET_INFO,
   COIN_SET_LOADING,
   COIN_SET_ERROR,
-  COIN_SET_MARKET_DATA
+  COIN_SET_MARKET_DATA,
+  COIN_RESET_MARKET_DATA
 } from '@/constants/mutation-types'
 
 export const state = () => ({
@@ -33,6 +34,7 @@ export const getters = {
 export const actions = {
   async fetchCoin({ commit }, coinId) {
     try {
+      commit(COIN_RESET_MARKET_DATA)
       commit(COIN_SET_ID, coinId)
       commit(COIN_SET_ERROR, false)
       commit(COIN_SET_LOADING, true)
@@ -77,5 +79,8 @@ export const mutations = {
       name: 'coin.market.evolution30d',
       value: value.market_data.price_change_percentage_30d
     })
+  },
+  [COIN_RESET_MARKET_DATA](state) {
+    state.marketData = []
   }
 }

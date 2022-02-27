@@ -68,7 +68,6 @@
             </base-button-link>
           </div>
         </base-card>
-        {{ marketData }}
         <CoinMarketData v-if="marketData.length > 0" :data="marketData" />
       </div>
       <base-card> <CoinMarketChart :coin="id" /> </base-card>

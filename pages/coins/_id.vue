@@ -83,6 +83,10 @@ export default {
   filters: {
     formatDollar
   },
+  async fetch({ store, route }) {
+    await store.dispatch('coin/fetchCoin', route.params.id)
+  },
+  fetchOnServer: false,
   computed: {
     ...mapGetters({
       basicInfo: 'coin/basicInfo',
@@ -141,9 +145,6 @@ export default {
     isFavourite() {
       return this.favouritesIds.includes(this.id)
     }
-  },
-  mounted() {
-    this.$store.dispatch('coin/fetchCoin', this.$route.params.id)
   },
   methods: {
     ...mapActions({ toggleFavorite: 'list/toggleFavorite' })

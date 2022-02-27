@@ -26,30 +26,35 @@
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   {{ $t('list.heading.price') }}
+                  <CoinTableSortingButton field="current_price" />
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   {{ $t('list.heading.price_change_24h') }}
+                  <CoinTableSortingButton field="price_change_percentage_24h" />
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   {{ $t('list.heading.ath') }}
+                  <CoinTableSortingButton field="ath" />
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   {{ $t('list.heading.ath_change') }}
+                  <CoinTableSortingButton field="ath_change_percentage" />
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   {{ $t('list.heading.market_cap') }}
+                  <CoinTableSortingButton field="market_cap" />
                 </th>
               </tr>
             </thead>

@@ -130,7 +130,7 @@ export default {
       )
     },
     coingecko() {
-      return 'https://www.coingecko.com/en/coins/' + this.symbol
+      return 'https://www.coingecko.com/en/coins/' + this.id
     },
     website() {
       return (

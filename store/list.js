@@ -1,5 +1,6 @@
 import api from '@/api'
-
+import localStorageHelper from '@/utils/localStorageHelper'
+import { FAVOURITES, COINS } from '@/constants/storages-types'
 import {
   LIST_SET_COINS,
   LIST_APPLY_SORTING,
@@ -37,8 +38,8 @@ export const getters = {
 
 export const actions = {
   initState({ commit }) {
-    commit(LIST_SET_COINS, JSON.parse(window.localStorage.getItem('coins')) || [])
-    commit(LIST_SET_FAVOURITES, JSON.parse(window.localStorage.getItem('favourites')) || [])
+    commit(LIST_SET_COINS, localStorageHelper.retrieve(COINS, []))
+    commit(LIST_SET_FAVOURITES, localStorageHelper.retrieve(FAVOURITES, []))
   },
   async fetchCoins({ commit }) {
     try {
@@ -63,9 +64,7 @@ export const actions = {
 export const mutations = {
   [LIST_SET_COINS](state, value) {
     state.coins = value
-    if (process.client) {
-      window.localStorage.setItem('coins', JSON.stringify(state.coins));
-    }
+    localStorageHelper.store(COINS, state.coins)
   },
   [LIST_APPLY_SORTING](state, { field, direction }) {
     state.sorting = { field, direction }
@@ -99,9 +98,7 @@ export const mutations = {
     } else {
       state.favourites.splice(index, 1)
     }
-    if (process.client) {
-      window.localStorage.setItem('favourites', JSON.stringify(state.favourites));
-    }
+    localStorageHelper.store(FAVOURITES, state.favourites)
   },
   [LIST_SET_FAVOURITES](state, value) {
     state.favourites = value

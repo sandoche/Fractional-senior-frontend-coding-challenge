@@ -18,7 +18,7 @@
     <div
       class="fixed inset-0 bg-gray-500 bg-opacity-25 transition-opacity"
       aria-hidden="true"
-      @click="hide"
+      @click="clearAndHide"
     ></div>
 
     <!--
@@ -32,12 +32,31 @@
       To: "opacity-0 scale-95"
   -->
     <div
-      class="mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all"
+      class="
+        mx-auto
+        max-w-xl
+        transform
+        divide-y divide-gray-100
+        overflow-hidden
+        rounded-xl
+        bg-white
+        shadow-2xl
+        ring-1 ring-black ring-opacity-5
+        transition-all
+      "
     >
       <div class="relative">
         <!-- Heroicon name: solid/search -->
         <svg
-          class="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-400"
+          class="
+            pointer-events-none
+            absolute
+            top-3.5
+            left-4
+            h-5
+            w-5
+            text-gray-400
+          "
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
@@ -50,63 +69,51 @@
           />
         </svg>
         <input
+          ref="searchbar"
+          v-model="query"
           type="text"
-          class="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-800 placeholder-gray-400 focus:ring-0 sm:text-sm"
+          class="
+            h-12
+            w-full
+            border-0
+            bg-transparent
+            pl-11
+            pr-4
+            text-gray-800
+            placeholder-gray-400
+            focus:ring-0
+            sm:text-sm
+          "
           placeholder="Search..."
           role="combobox"
           aria-expanded="false"
           aria-controls="options"
+          @input="search"
         />
       </div>
 
       <!-- Results, show/hide based on command palette state -->
       <ul
+        v-if="results.length > 0"
         id="options"
         class="max-h-96 scroll-py-3 overflow-y-auto p-3"
         role="listbox"
       >
-        <!-- Active: "bg-gray-100" -->
-        <li
-          id="option-1"
-          class="group flex cursor-default select-none rounded-xl p-3"
-          role="option"
-          tabindex="-1"
-        >
-          <div
-            class="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-indigo-500"
-          >
-            <!-- Heroicon name: outline/pencil-alt -->
-            <svg
-              class="h-6 w-6 text-white"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-              />
-            </svg>
-          </div>
-          <div class="ml-4 flex-auto">
-            <!-- Active: "text-gray-900", Not Active: "text-gray-700" -->
-            <p class="text-sm font-medium text-gray-700">Text</p>
-            <!-- Active: "text-gray-700", Not Active: "text-gray-500" -->
-            <p class="text-sm text-gray-500">
-              Add freeform text with basic formatting options.
-            </p>
-          </div>
-        </li>
-
+        <TheSearchBoxResult
+          v-for="(coin, index) of results"
+          :id="coin.id"
+          :key="index"
+          :name="coin.name"
+          :symbol="coin.symbol"
+          :rank="coin.market_cap_rank"
+          :image="coin.thumb"
+          :clear-and-hide="clearAndHide"
+        />
         <!-- More items... -->
       </ul>
 
       <!-- Empty state, show/hide based on command palette state -->
-      <div class="py-14 px-6 text-center text-sm sm:px-14">
+      <div v-if="showNoResults" class="py-14 px-6 text-center text-sm sm:px-14">
         <!-- Heroicon name: outline/exclamation-circle -->
         <svg
           class="mx-auto h-6 w-6 text-gray-400"
@@ -135,16 +142,59 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 
+const MIN_LETTER_START_SEARCH = 2
+
 export default {
+  data() {
+    return {
+      query: ''
+    }
+  },
+
   computed: {
     ...mapGetters({
-      isSearchDisplayed: 'search/isSearchDisplayed'
-    })
+      results: 'search/results',
+      isSearchDisplayed: 'search/isSearchDisplayed',
+      loading: 'search/loading'
+    }),
+    showNoResults() {
+      return (
+        this.results.length === 0 &&
+        this.query.length >= MIN_LETTER_START_SEARCH &&
+        this.loading === false
+      )
+    }
+  },
+  watch: {
+    isSearchDisplayed(newValue) {
+      if (newValue) {
+        // next tick
+
+        this.$nextTick(() => this.$refs.searchbar.focus())
+      }
+    }
   },
   methods: {
     ...mapActions({
-      hide: 'search/hideSearch'
-    })
+      hide: 'search/hideSearch',
+      fetchSearch: 'search/fetchSearch',
+      reset: 'search/resetSearch'
+    }),
+    search() {
+      if (this.query.length >= MIN_LETTER_START_SEARCH) {
+        this.fetchSearch(this.query)
+      } else if (this.query.length === 0) {
+        this.reset()
+      }
+    },
+    clear() {
+      this.query = ''
+    },
+    clearAndHide() {
+      this.clear()
+      this.hide()
+      this.reset()
+    }
   }
 }
 </script>

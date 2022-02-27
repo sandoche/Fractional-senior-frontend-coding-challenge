@@ -15,7 +15,7 @@ export const state = () => ({
 })
 
 export const getters = {
-  results: (state) => state.results,
+  results: (state) => state.results.slice(0, 5),
   loading: (state) => state.loading,
   error: (state) => state.error,
   isSearchDisplayed: (state) => state.isSearchDisplayed
@@ -27,7 +27,7 @@ export const actions = {
       commit(SEARCH_SET_ERROR, false)
       commit(SEARCH_SET_LOADING, true)
       const results = await api.search.fetchQuery(this.$axios, query)
-      commit(SEARCH_SET_RESULTS, results)
+      commit(SEARCH_SET_RESULTS, results.coins)
     } catch (error) {
       commit(SEARCH_SET_ERROR, true)
     } finally {
@@ -39,6 +39,10 @@ export const actions = {
   },
   hideSearch({ commit }) {
     commit(SEARCH_SET_DISPLAY, false)
+  },
+  resetSearch({ commit }) {
+    commit(SEARCH_SET_RESULTS, [])
+    commit(SEARCH_SET_LOADING, false)
   }
 }
 

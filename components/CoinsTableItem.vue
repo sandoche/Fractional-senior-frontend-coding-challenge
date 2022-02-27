@@ -108,9 +108,6 @@ export default {
       required: true
     }
   },
-  methods: {
-    ...mapActions({ toggleFavorite: 'list/toggleFavorite' })
-  },
   computed: {
     ...mapGetters({
       favouritesIds: 'list/favouritesIds'
@@ -118,6 +115,9 @@ export default {
     isFavourite() {
       return this.favouritesIds.includes(this.id)
     }
+  },
+  methods: {
+    ...mapActions({ toggleFavorite: 'list/toggleFavorite' })
   }
 }
 </script>

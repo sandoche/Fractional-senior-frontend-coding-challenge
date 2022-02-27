@@ -5,7 +5,8 @@ import {
   LIST_APPLY_SORTING,
   LIST_SET_LOADING,
   LIST_SET_ERROR,
-  LIST_TOGGLE_FAVORITE
+  LIST_TOGGLE_FAVORITE,
+  LIST_SET_FAVOURITES
 } from '@/constants/mutation-types'
 
 export const state = () => ({
@@ -35,6 +36,10 @@ export const getters = {
 }
 
 export const actions = {
+  initState({ commit }) {
+    commit(LIST_SET_COINS, JSON.parse(window.localStorage.getItem('coins')) || [])
+    commit(LIST_SET_FAVOURITES, JSON.parse(window.localStorage.getItem('favourites')) || [])
+  },
   async fetchCoins({ commit }) {
     try {
       commit(LIST_SET_ERROR, false)
@@ -58,6 +63,9 @@ export const actions = {
 export const mutations = {
   [LIST_SET_COINS](state, value) {
     state.coins = value
+    if (process.client) {
+      window.localStorage.setItem('coins', JSON.stringify(state.coins));
+    }
   },
   [LIST_APPLY_SORTING](state, { field, direction }) {
     state.sorting = { field, direction }
@@ -91,5 +99,11 @@ export const mutations = {
     } else {
       state.favourites.splice(index, 1)
     }
+    if (process.client) {
+      window.localStorage.setItem('favourites', JSON.stringify(state.favourites));
+    }
+  },
+  [LIST_SET_FAVOURITES](state, value) {
+    state.favourites = value
   }
 }

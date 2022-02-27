@@ -24,6 +24,7 @@ export default {
     })
   },
   mounted() {
+    this.$store.dispatch('list/initState')
     this.$store.dispatch('list/fetchCoins')
   }
 }

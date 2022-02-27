@@ -29,7 +29,8 @@ export const getters = {
       return state.favourites.includes(coin.id)
     })
   },
-  favouritesIds: (state) => state.favourites
+  favouritesIds: (state) => state.favourites,
+  favouritesCount: (state) => state.favourites.length
 }
 
 export const actions = {

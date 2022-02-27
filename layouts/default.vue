@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-200">
+  <div class="bg-slate-200 min-h-screen">
     <TheNavbar />
     <base-container>
       <main class="py-8">

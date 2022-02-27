@@ -1,5 +1,5 @@
 <template>
-  <tr>
+  <tr class="coin-table-item hover:bg-slate-50">
     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
       <div class="flex">
         <svg
@@ -9,6 +9,7 @@
             'w-5',
             'mr-5',
             'cursor-pointer',
+            'fill-gray-300',
             'hover:fill-yellow-500',
             { 'fill-yellow-500': isFavourite }
           ]"
@@ -23,35 +24,65 @@
         <span>{{ rank }}</span>
       </div>
     </td>
-    <td class="px-6 py-4 whitespace-nowrap">
-      <div class="flex items-center">
-        <div class="flex-shrink-0 h-10 w-10">
-          <img
-            class="h-10 w-10 rounded-full"
-            :src="image"
-            :alt="`icon ${name}`"
-          />
+    <td class="whitespace-nowrap">
+      <nuxt-link
+        :to="`/coins/${id}`"
+        class="cursor-pointer px-6 py-4 inline-block"
+      >
+        <div class="flex items-center">
+          <div class="flex-shrink-0 h-10 w-10">
+            <img
+              class="h-10 w-10 rounded-full"
+              :src="image"
+              :alt="`icon ${name}`"
+            />
+          </div>
+          <div class="ml-4">
+            <div class="text-sm font-medium text-gray-900">{{ name }}</div>
+            <div class="text-sm text-gray-500 uppercase">{{ symbol }}</div>
+          </div>
         </div>
-        <div class="ml-4">
-          <div class="text-sm font-medium text-gray-900">{{ name }}</div>
-          <div class="text-sm text-gray-500 uppercase">{{ symbol }}</div>
-        </div>
-      </div>
+      </nuxt-link>
     </td>
-    <td class="px-6 py-4 whitespace-nowrap">
-      <div class="text-sm text-gray-900">{{ price | formatDollar }}</div>
+    <td class="whitespace-nowrap">
+      <nuxt-link
+        :to="`/coins/${id}`"
+        class="cursor-pointer px-6 py-4 inline-block"
+      >
+        <div class="text-sm text-gray-900">{{ price | formatDollar }}</div>
+      </nuxt-link>
     </td>
-    <td class="px-6 py-4 whitespace-nowrap">
-      <base-change-tag :change="priceChange24h" />
+    <td class="whitespace-nowrap">
+      <nuxt-link
+        :to="`/coins/${id}`"
+        class="cursor-pointer px-6 py-4 inline-block"
+      >
+        <base-change-tag :change="priceChange24h" />
+      </nuxt-link>
     </td>
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-      {{ ath | formatDollar }}
+    <td class="whitespace-nowrap text-sm text-gray-500">
+      <nuxt-link
+        :to="`/coins/${id}`"
+        class="cursor-pointer px-6 py-4 inline-block"
+      >
+        {{ ath | formatDollar }}
+      </nuxt-link>
     </td>
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-      {{ athChange | formatPercentage }}
+    <td class="whitespace-nowrap text-sm text-gray-500">
+      <nuxt-link
+        :to="`/coins/${id}`"
+        class="cursor-pointer px-6 py-4 inline-block"
+      >
+        {{ athChange | formatPercentage }}
+      </nuxt-link>
     </td>
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-      {{ marketCap | formatDollar }}
+    <td class="whitespace-nowrap text-sm text-gray-500">
+      <nuxt-link
+        :to="`/coins/${id}`"
+        class="cursor-pointer px-6 py-4 inline-block"
+      >
+        {{ marketCap | formatDollar }}
+      </nuxt-link>
     </td>
   </tr>
 </template>

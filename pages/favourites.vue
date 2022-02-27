@@ -11,8 +11,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import loadStoredData from '@/mixins/loadStoredData'
 
 export default {
+  mixins: [loadStoredData],
   computed: {
     ...mapGetters({
       favourites: 'list/favourites',

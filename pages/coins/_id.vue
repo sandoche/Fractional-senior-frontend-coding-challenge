@@ -78,11 +78,13 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import formatDollar from '@/filters/formatDollar'
+import loadStoredData from '@/mixins/loadStoredData'
 
 export default {
   filters: {
     formatDollar
   },
+  mixins: [loadStoredData],
   async fetch({ store, route }) {
     await store.dispatch('coin/fetchCoin', route.params.id)
   },

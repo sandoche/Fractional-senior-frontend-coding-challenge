@@ -203,10 +203,10 @@
           />
         </svg>
       </div>
-      <p class="font-bold text-xl text-slate-700 mb-2">
+      <p class="font-bold text-xl text-slate-700 mb-2 text-center">
         {{ $t('favourites.emptyTitle') }}
       </p>
-      <p class="text-xl text-slate-700 mb-4">
+      <p class="text-xl text-slate-700 mb-4 text-center">
         {{ $t('favourites.emptyText') }}
       </p>
       <base-button-nuxt to="/">{{ $t('favourites.button') }}</base-button-nuxt>

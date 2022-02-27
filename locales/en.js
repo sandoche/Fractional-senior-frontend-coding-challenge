@@ -1,5 +1,6 @@
 export default {
   navigation: {
+    title: 'CoinSlim',
     coins: 'Coins',
     favourites: 'Favourites'
   },

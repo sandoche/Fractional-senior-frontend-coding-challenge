@@ -25,8 +25,9 @@ export const getters = {
   loading: (state) => state.loading,
   error: (state) => state.error,
   favourites: (state) => {
-    return state.coins.filter((coin) => {
-      return state.favourites.includes(coin.id)
+    return state.favourites.map(favourite => {
+      const coin = state.coins.find(coin => coin.id === favourite)
+      return coin
     })
   },
   favouritesIds: (state) => state.favourites,

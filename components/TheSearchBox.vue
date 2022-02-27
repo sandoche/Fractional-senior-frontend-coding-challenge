@@ -3,6 +3,7 @@
     class="fixed inset-0 z-10 overflow-y-auto p-4 sm:p-6 md:p-20"
     role="dialog"
     aria-modal="true"
+    v-if="isSearchDisplayed"
   >
     <!--
     Background overlay, show/hide based on modal state.
@@ -15,6 +16,7 @@
       To: "opacity-0"
   -->
     <div
+      @click="hide"
       class="fixed inset-0 bg-gray-500 bg-opacity-25 transition-opacity"
       aria-hidden="true"
     ></div>
@@ -141,7 +143,6 @@ export default {
   },
   methods: {
     ...mapActions({
-      show: 'search/showSearch',
       hide: 'search/hideSearch'
     })
   }

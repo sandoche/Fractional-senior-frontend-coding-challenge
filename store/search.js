@@ -11,14 +11,14 @@ export const state = () => ({
   results: [],
   loading: false,
   error: false,
-  showSearch: false
+  isSearchDisplayed: false
 })
 
 export const getters = {
   results: (state) => state.results,
   loading: (state) => state.loading,
   error: (state) => state.error,
-  isSearchDisplayed: (state) => state.showSearch
+  isSearchDisplayed: (state) => state.isSearchDisplayed
 }
 
 export const actions = {
@@ -35,10 +35,10 @@ export const actions = {
     }
   },
   showSearch({ commit }) {
-    commit(SEARCH_TOGGLE_DISPLAY, true)
+    commit(SEARCH_SET_DISPLAY, true)
   },
   hideSearch({ commit }) {
-    commit(SEARCH_TOGGLE_DISPLAY, false)
+    commit(SEARCH_SET_DISPLAY, false)
   }
 }
 
@@ -53,6 +53,6 @@ export const mutations = {
     state.error = value
   },
   [SEARCH_SET_DISPLAY](state, value) {
-    state.showSearch = value
+    state.isSearchDisplayed = value
   }
 }

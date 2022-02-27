@@ -8,19 +8,7 @@
             <!-- Mobile menu button -->
             <button
               type="button"
-              class="
-                inline-flex
-                items-center
-                justify-center
-                p-2
-                rounded-md
-                text-gray-400
-                hover:text-gray-500 hover:bg-gray-100
-                focus:outline-none
-                focus:ring-2
-                focus:ring-inset
-                focus:ring-indigo-500
-              "
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
               aria-controls="mobile-menu"
               aria-expanded="false"
               @click="toggleMenu"
@@ -73,12 +61,7 @@
             </button>
           </div>
           <div
-            class="
-              flex-1 flex
-              items-center
-              justify-center
-              sm:items-stretch sm:justify-start
-            "
+            class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
           >
             <nuxt-link to="/" class="flex-shrink-0 flex items-center">
               <img
@@ -93,75 +76,30 @@
               </p>
             </nuxt-link>
             <div
-              class="
-                desktop-menu
-                hidden
-                sm:ml-6 sm:flex sm:space-x-8
-                flex-1
-                justify-center
-              "
+              class="desktop-menu hidden sm:ml-6 sm:flex sm:space-x-8 flex-1 justify-center"
             >
               <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
               <nuxt-link
                 to="/"
-                class="
-                  inline-flex
-                  items-center
-                  px-1
-                  pt-1
-                  border-b-2
-                  text-sm
-                  font-medium
-                  border-transparent
-                  text-gray-500
-                  hover:border-gray-300 hover:text-gray-700
-                "
+                class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
                 {{ $t('navigation.coins') }}
               </nuxt-link>
               <nuxt-link
                 to="/favourites"
-                class="
-                  inline-flex
-                  items-center
-                  px-1
-                  pt-1
-                  border-b-2
-                  text-sm
-                  font-medium
-                  border-transparent
-                  text-gray-500
-                  hover:border-gray-300 hover:text-gray-700
-                "
+                class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
               >
                 {{ $t('navigation.favourites') }}
               </nuxt-link>
             </div>
           </div>
           <div
-            class="
-              absolute
-              inset-y-0
-              right-0
-              flex
-              items-center
-              pr-2
-              sm:static sm:inset-auto sm:ml-6 sm:pr-0
-            "
+            class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
           >
             <button
               type="button"
-              class="
-                bg-white
-                p-1
-                rounded-full
-                text-gray-400
-                hover:text-gray-500
-                focus:outline-none
-                focus:ring-2
-                focus:ring-offset-2
-                focus:ring-indigo-500
-              "
+              class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              @click="showSearch"
             >
               <span class="sr-only">Search</span>
 
@@ -199,34 +137,12 @@
           <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
           <nuxt-link
             to="/"
-            class="
-              block
-              pl-3
-              pr-4
-              py-2
-              border-l-4
-              text-base
-              font-medium
-              border-transparent
-              text-gray-500
-              hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
-            "
+            class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
             >{{ $t('navigation.coins') }}</nuxt-link
           >
           <nuxt-link
             to="/favourites"
-            class="
-              block
-              pl-3
-              pr-4
-              py-2
-              border-l-4
-              text-base
-              font-medium
-              border-transparent
-              text-gray-500
-              hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
-            "
+            class="block pl-3 pr-4 py-2 border-l-4 text-base font-medium border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
             >{{ $t('navigation.favourites') }}</nuxt-link
           >
         </div>
@@ -236,6 +152,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   data() {
     return {
@@ -243,6 +161,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      showSearch: 'search/showSearch'
+    }),
     toggleMenu() {
       this.menuOpen = !this.menuOpen
     }

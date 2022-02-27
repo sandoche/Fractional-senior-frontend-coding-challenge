@@ -1,9 +1,9 @@
 <template>
   <div
+    v-if="isSearchDisplayed"
     class="fixed inset-0 z-10 overflow-y-auto p-4 sm:p-6 md:p-20"
     role="dialog"
     aria-modal="true"
-    v-if="isSearchDisplayed"
   >
     <!--
     Background overlay, show/hide based on modal state.
@@ -16,9 +16,9 @@
       To: "opacity-0"
   -->
     <div
-      @click="hide"
       class="fixed inset-0 bg-gray-500 bg-opacity-25 transition-opacity"
       aria-hidden="true"
+      @click="hide"
     ></div>
 
     <!--
@@ -61,14 +61,14 @@
 
       <!-- Results, show/hide based on command palette state -->
       <ul
-        class="max-h-96 scroll-py-3 overflow-y-auto p-3"
         id="options"
+        class="max-h-96 scroll-py-3 overflow-y-auto p-3"
         role="listbox"
       >
         <!-- Active: "bg-gray-100" -->
         <li
-          class="group flex cursor-default select-none rounded-xl p-3"
           id="option-1"
+          class="group flex cursor-default select-none rounded-xl p-3"
           role="option"
           tabindex="-1"
         >

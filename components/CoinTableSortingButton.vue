@@ -1,13 +1,13 @@
 <template>
-  <div @click="sort" class="cursor-pointer coin-table-sorting-button flex">
+  <div class="cursor-pointer coin-table-sorting-button flex" @click="sort">
     <slot class="mr-8" />
     <div :class="['arrow-icon', isActive ? 'opacity-100' : 'opacity-10']">
       <svg
+        v-if="isAscending"
         xmlns="http://www.w3.org/2000/svg"
         class="h-5 w-5"
         viewBox="0 0 20 20"
         fill="currentColor"
-        v-if="isAscending"
       >
         <path
           fill-rule="evenodd"
@@ -16,11 +16,11 @@
         />
       </svg>
       <svg
+        v-else
         xmlns="http://www.w3.org/2000/svg"
         class="h-5 w-5"
         viewBox="0 0 20 20"
         fill="currentColor"
-        v-else
       >
         <path
           fill-rule="evenodd"

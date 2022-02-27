@@ -66,4 +66,6 @@ $ npm run generate
 
 ### Project description
 
+👉 https://coinslim.netlify.app
+
 > Work in progress

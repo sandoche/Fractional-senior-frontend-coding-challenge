@@ -71,24 +71,25 @@ export const mutations = {
   [COIN_SET_MARKET_DATA](state, value) {
     state.marketData = []
 
-    state.marketData.push({
-      name: 'coin.market.evolution24',
-      value: value.market_data.price_change_percentage_24h
-    })
-    state.marketData.push({
-      name: 'coin.market.evolution7d',
-      value: value.market_data.price_change_percentage_7d
-    })
-    state.marketData.push({
-      name: 'coin.market.evolution14d',
-      value: value.market_data.price_change_percentage_14d
-    })
-    state.marketData.push({
-      name: 'coin.market.evolution30d',
-      value: value.market_data.price_change_percentage_30d
-    })
+    if (value.market_data) {
 
-    console.log(state.marketData)
+      state.marketData.push({
+        name: 'coin.market.evolution24',
+        value: value.market_data.price_change_percentage_24h
+      })
+      state.marketData.push({
+        name: 'coin.market.evolution7d',
+        value: value.market_data.price_change_percentage_7d
+      })
+      state.marketData.push({
+        name: 'coin.market.evolution14d',
+        value: value.market_data.price_change_percentage_14d
+      })
+      state.marketData.push({
+        name: 'coin.market.evolution30d',
+        value: value.market_data.price_change_percentage_30d
+      })
+    }
   },
   [COIN_RESET_MARKET_DATA](state) {
     state.marketData = []

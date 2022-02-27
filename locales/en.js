@@ -1,4 +1,7 @@
 export default {
+  generic: {
+    error: 'An error occured, please try again',
+  },
   navigation: {
     title: 'CoinSlim',
     coins: 'Coins',

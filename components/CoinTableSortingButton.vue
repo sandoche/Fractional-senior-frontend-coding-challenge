@@ -1,31 +1,34 @@
 <template>
-  <div @click="sort" :class="[isActive ? 'opacity-100' : 'opacity-50']">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-      v-if="isAscending"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
-        clip-rule="evenodd"
-      />
-    </svg>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-      v-else
-    >
-      <path
-        fill-rule="evenodd"
-        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-        clip-rule="evenodd"
-      />
-    </svg>
+  <div @click="sort" class="cursor-pointer coin-table-sorting-button flex">
+    <slot class="mr-8" />
+    <div :class="['arrow-icon', isActive ? 'opacity-100' : 'opacity-10']">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        v-if="isAscending"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        v-else
+      >
+        <path
+          fill-rule="evenodd"
+          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
   </div>
 </template>
 
@@ -47,7 +50,7 @@ export default {
       return this.sorting.field === this.field
     },
     isAscending() {
-      return this.sorting.direction === 'asc'
+      return this.isActive && this.sorting.direction === 'asc'
     }
   },
   methods: {
@@ -61,3 +64,9 @@ export default {
   }
 }
 </script>
+
+<style lang="postcss">
+.coin-table-sorting-button:hover .arrow-icon {
+  opacity: 1;
+}
+</style>

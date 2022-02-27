@@ -60,15 +60,21 @@ export const mutations = {
   [LIST_APPLY_SORTING](state, { field, direction }) {
     state.sorting = { field, direction }
     state.coins = state.coins.sort((a, b) => {
-      console.log(a.rank)
-
       if (direction === 'asc') {
-        return a[field] >= b[field] ? 1 : -1
+        if (typeof a[field] === 'string') {
+          return a[field].toLowerCase() <= b[field].toLowerCase() ? -1 : 1
+        } else {
+          return a[field] <= b[field] ? -1 : 1
+        }
       } else {
-        return a[field] < b[field] ? 1 : -1
+        // eslint-disable-next-line
+        if (typeof a[field] === 'string') {
+          return a[field].toLowerCase() > b[field].toLowerCase() ? -1 : 1
+        } else {
+          return a[field] > b[field] ? -1 : 1
+        }
       }
     })
-    console.log(state.coins[0].id)
   },
   [LIST_SET_LOADING](state, value) {
     state.loading = value

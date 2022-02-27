@@ -12,49 +12,59 @@
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  # <CoinTableSortingButton field="market_cap_rank" />
+                  <coin-table-sorting-button field="market_cap_rank"
+                    >#</coin-table-sorting-button
+                  >
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  {{ $t('list.heading.coin') }}
-                  <CoinTableSortingButton field="name" />
+                  <coin-table-sorting-button field="name">
+                    {{ $t('list.heading.coin') }}
+                  </coin-table-sorting-button>
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  {{ $t('list.heading.price') }}
-                  <CoinTableSortingButton field="current_price" />
+                  <coin-table-sorting-button field="current_price">
+                    {{ $t('list.heading.price') }}
+                  </coin-table-sorting-button>
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  {{ $t('list.heading.price_change_24h') }}
-                  <CoinTableSortingButton field="price_change_percentage_24h" />
+                  <coin-table-sorting-button
+                    field="price_change_percentage_24h"
+                  >
+                    {{ $t('list.heading.price_change_24h') }}
+                  </coin-table-sorting-button>
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  {{ $t('list.heading.ath') }}
-                  <CoinTableSortingButton field="ath" />
+                  <coin-table-sorting-button field="ath">
+                    {{ $t('list.heading.ath') }}
+                  </coin-table-sorting-button>
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  {{ $t('list.heading.ath_change') }}
-                  <CoinTableSortingButton field="ath_change_percentage" />
+                  <coin-table-sorting-button field="ath_change_percentage">
+                    {{ $t('list.heading.ath_change') }}
+                  </coin-table-sorting-button>
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  {{ $t('list.heading.market_cap') }}
-                  <CoinTableSortingButton field="market_cap" />
+                  <coin-table-sorting-button field="market_cap">
+                    {{ $t('list.heading.market_cap') }}
+                  </coin-table-sorting-button>
                 </th>
               </tr>
             </thead>

@@ -8,6 +8,13 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  async fetch({ store }) {
+    // for a better seo, without blocking the performance
+    if (store.state.list.coins.length === 0) {
+      await store.dispatch('list/fetchCoins')
+    }
+  },
+  fetchOnServer: false,
   computed: {
     ...mapGetters({
       coins: 'list/coins',

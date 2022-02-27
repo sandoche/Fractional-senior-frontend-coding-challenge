@@ -1,6 +1,7 @@
 <template>
   <div>
-    <CoinsTable :coins="coins" :sorting="sorting" />
+    <CoinsTableLoading v-if="loading && coins.length === 0" />
+    <CoinsTable v-else :coins="coins" :sorting="sorting" />
   </div>
 </template>
 

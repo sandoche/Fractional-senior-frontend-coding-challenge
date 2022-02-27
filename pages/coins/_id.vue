@@ -1,35 +1,37 @@
 <template>
   <div>
     <div class="grid grid-cols-2 gap-8 mb-8">
-      <base-card>
-        <div class="flex flex-row mb-8">
-          <img :src="image" class="w-16 h-16 mr-6" :alt="`Icon ${name}`" />
+      <div>
+        <base-card>
+          <div class="flex flex-row mb-8">
+            <img :src="image" class="w-16 h-16 mr-6" :alt="`Icon ${name}`" />
+            <div>
+              <h1 class="text-4xl bolder text-gray-900 mb-1">{{ name }}</h1>
+              <p class="text-xl text-gray-500 uppercase">{{ symbol }}</p>
+            </div>
+            <div class="flex-1 text-right">
+              <p class="text-4xl bolder text-gray-900 mb-2">
+                {{ price | formatDollar }}
+              </p>
+              <p class="text-sm text-gray-500">
+                {{ $t('coin.marketCap') }}
+                {{ marketCap | formatDollar }}
+              </p>
+            </div>
+          </div>
           <div>
-            <h1 class="text-4xl bolder text-gray-900 mb-1">{{ name }}</h1>
-            <p class="text-xl text-gray-500 uppercase">{{ symbol }}</p>
+            <base-button-link :url="coingecko">
+              {{ $t('coin.coingecko') }}
+            </base-button-link>
+            <base-button-link v-if="website" :url="website">
+              {{ $t('coin.website') }}
+            </base-button-link>
           </div>
-          <div class="flex-1 text-right">
-            <p class="text-4xl bolder text-gray-900 mb-2">
-              {{ price | formatDollar }}
-            </p>
-            <p class="text-sm text-gray-500">
-              {{ $t('coin.marketCap') }}
-              {{ marketCap | formatDollar }}
-            </p>
-          </div>
-        </div>
-        <div>
-          <base-button-link :url="coingecko">
-            {{ $t('coin.coingecko') }}
-          </base-button-link>
-          <base-button-link v-if="website" :url="website">
-            {{ $t('coin.website') }}
-          </base-button-link>
-        </div>
-      </base-card>
-      <base-card> GRAPH HERE </base-card>
+        </base-card>
+        <CoinMarketData :data="marketData" />
+      </div>
+      <base-card> <CoinMarketChart :coin="id" /> </base-card>
     </div>
-    <CoinMarketData :data="marketData" />
   </div>
 </template>
 
@@ -52,6 +54,9 @@ export default {
       loading: 'coin/loading',
       error: 'coin/error'
     }),
+    id() {
+      return this.basicInfo.id || this.marketInfo.id
+    },
     name() {
       return this.basicInfo.name || this.marketInfo.name
     },

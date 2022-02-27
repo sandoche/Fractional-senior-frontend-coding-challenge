@@ -3,19 +3,22 @@ import api from '@/api'
 import {
   SEARCH_SET_RESULTS,
   SEARCH_SET_LOADING,
-  SEARCH_SET_ERROR
+  SEARCH_SET_ERROR,
+  SEARCH_SET_DISPLAY,
 } from '@/constants/mutation-types'
 
 export const state = () => ({
   results: [],
   loading: false,
-  error: false
+  error: false,
+  showSearch: false
 })
 
 export const getters = {
   results: (state) => state.results,
   loading: (state) => state.loading,
-  error: (state) => state.error
+  error: (state) => state.error,
+  isSearchDisplayed: (state) => state.showSearch
 }
 
 export const actions = {
@@ -30,6 +33,12 @@ export const actions = {
     } finally {
       commit(SEARCH_SET_LOADING, false)
     }
+  },
+  showSearch({ commit }) {
+    commit(SEARCH_TOGGLE_DISPLAY, true)
+  },
+  hideSearch({ commit }) {
+    commit(SEARCH_TOGGLE_DISPLAY, false)
   }
 }
 
@@ -42,5 +51,8 @@ export const mutations = {
   },
   [SEARCH_SET_ERROR](state, value) {
     state.error = value
+  },
+  [SEARCH_SET_DISPLAY](state, value) {
+    state.showSearch = value
   }
 }

@@ -6,6 +6,7 @@
         <Nuxt />
       </main>
     </base-container>
+    <TheSearchBox />
   </div>
 </template>
 

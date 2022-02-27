@@ -9,7 +9,9 @@ import { mapGetters } from 'vuex'
 
 export default {
   async fetch({ store }) {
-    await store.dispatch('list/fetchCoins')
+    if (store.state.list.coins.length === 0) {
+      await store.dispatch('list/fetchCoins')
+    }
   },
   fetchOnServer: false,
   computed: {
@@ -19,6 +21,9 @@ export default {
       loading: 'list/loading',
       error: 'list/error'
     })
+  },
+  mounted() {
+    this.$store.dispatch('list/fetchCoins')
   }
 }
 </script>

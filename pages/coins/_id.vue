@@ -86,9 +86,10 @@ export default {
   },
   mixins: [loadStoredData],
   async fetch({ store, route }) {
-    await store.dispatch('coin/fetchCoin', route.params.id)
+    if (process.server) {
+      await store.dispatch('coin/fetchCoin', route.params.id)
+    }
   },
-  fetchOnServer: false,
   computed: {
     ...mapGetters({
       basicInfo: 'coin/basicInfo',
@@ -149,6 +150,7 @@ export default {
     }
   },
   mounted() {
+    this.$store.dispatch('coin/fetchCoin', this.$route.params.id)
     this.$store.dispatch('coin/initState', this.$route.params.id)
   },
   methods: {

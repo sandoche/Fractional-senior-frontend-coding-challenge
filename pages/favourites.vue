@@ -15,11 +15,6 @@ import loadStoredData from '@/mixins/loadStoredData'
 
 export default {
   mixins: [loadStoredData],
-  async fetch({ store }) {
-    if (process.env.isBuilding) {
-      await store.dispatch('list/fetchCoins')
-    }
-  },
   computed: {
     ...mapGetters({
       favourites: 'list/favourites',

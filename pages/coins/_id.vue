@@ -86,7 +86,9 @@ export default {
   },
   mixins: [loadStoredData],
   async fetch({ store, route }) {
-    await store.dispatch('coin/fetchCoin', route.params.id)
+    if (process.server) {
+      await store.dispatch('coin/fetchCoin', route.params.id)
+    }
   },
   computed: {
     ...mapGetters({

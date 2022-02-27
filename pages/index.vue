@@ -11,7 +11,9 @@ import loadStoredData from '@/mixins/loadStoredData'
 export default {
   mixins: [loadStoredData],
   async fetch({ store }) {
-    await store.dispatch('list/fetchCoins')
+    if (process.server) {
+      await store.dispatch('list/fetchCoins')
+    }
   },
   computed: {
     ...mapGetters({

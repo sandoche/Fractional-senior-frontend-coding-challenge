@@ -148,6 +148,9 @@ export default {
       return this.favouritesIds.includes(this.id)
     }
   },
+  mounted() {
+    this.$store.dispatch('coin/initState', this.$route.params.id)
+  },
   methods: {
     ...mapActions({ toggleFavorite: 'list/toggleFavorite' })
   }

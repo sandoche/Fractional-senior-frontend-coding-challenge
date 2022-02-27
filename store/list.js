@@ -47,6 +47,9 @@ export const actions = {
   },
   toggleFavorite({ commit }, id) {
     commit(LIST_TOGGLE_FAVORITE, id)
+  },
+  applySorting({ commit }, { field, direction }) {
+    commit(LIST_APPLY_SORTING, { field, direction })
   }
 }
 
@@ -54,8 +57,18 @@ export const mutations = {
   [LIST_SET_COINS](state, value) {
     state.coins = value
   },
-  [LIST_APPLY_SORTING](state, value) {
-    state.sorting = value
+  [LIST_APPLY_SORTING](state, { field, direction }) {
+    state.sorting = { field, direction }
+    state.coins = state.coins.sort((a, b) => {
+      console.log(a.rank)
+
+      if (direction === 'asc') {
+        return a[field] >= b[field] ? 1 : -1
+      } else {
+        return a[field] < b[field] ? 1 : -1
+      }
+    })
+    console.log(state.coins[0].id)
   },
   [LIST_SET_LOADING](state, value) {
     state.loading = value

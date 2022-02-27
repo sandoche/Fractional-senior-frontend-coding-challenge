@@ -24,7 +24,7 @@ export const getters = {
   sorting: (state) => state.sorting,
   loading: (state) => state.loading,
   error: (state) => state.error,
-  favorites: (state) => {
+  favourites: (state) => {
     return state.coins.filter((coin) => {
       return state.favorites.includes(coin.id)
     })

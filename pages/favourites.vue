@@ -1,7 +1,7 @@
 <template>
-  <pre>
-    {{ coins }}
-  </pre>
+  <div>
+    <CoinsTable :coins="favourites" :sorting="sorting" />
+  </div>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default {
   fetchOnServer: false,
   computed: {
     ...mapGetters({
-      coins: 'list/coins',
+      favourites: 'list/favourites',
       sorting: 'list/sorting',
       loading: 'list/loading',
       error: 'list/error'

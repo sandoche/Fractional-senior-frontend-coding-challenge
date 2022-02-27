@@ -78,11 +78,13 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import formatDollar from '@/filters/formatDollar'
+import loadStoredData from '@/mixins/loadStoredData'
 
 export default {
   filters: {
     formatDollar
   },
+  mixins: [loadStoredData],
   async fetch({ store, route }) {
     await store.dispatch('coin/fetchCoin', route.params.id)
   },
@@ -130,7 +132,7 @@ export default {
       )
     },
     coingecko() {
-      return 'https://www.coingecko.com/en/coins/' + this.symbol
+      return 'https://www.coingecko.com/en/coins/' + this.id
     },
     website() {
       return (
@@ -145,6 +147,9 @@ export default {
     isFavourite() {
       return this.favouritesIds.includes(this.id)
     }
+  },
+  mounted() {
+    this.$store.dispatch('coin/initState', this.$route.params.id)
   },
   methods: {
     ...mapActions({ toggleFavorite: 'list/toggleFavorite' })

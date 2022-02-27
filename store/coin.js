@@ -1,6 +1,6 @@
 import api from '@/api'
-
-
+import localStorageHelper from '@/utils/localStorageHelper'
+import { COIN_ID_ } from '@/constants/storages-types'
 import {
   COIN_SET_ID,
   COIN_SET_MARKET_INFO,
@@ -32,6 +32,11 @@ export const getters = {
 }
 
 export const actions = {
+  initState({ commit, state }, coinId) {
+    const marketInfoFromStorage = localStorageHelper.retrieve(COIN_ID_ + coinId, {})
+    commit(COIN_SET_MARKET_INFO, marketInfoFromStorage)
+    commit(COIN_SET_MARKET_DATA, marketInfoFromStorage)
+  },
   async fetchCoin({ commit }, coinId) {
     try {
       commit(COIN_RESET_MARKET_DATA)
@@ -55,6 +60,7 @@ export const mutations = {
   },
   [COIN_SET_MARKET_INFO](state, value) {
     state.marketInfo = value
+    localStorageHelper.store(COIN_ID_ + value.id, value)
   },
   [COIN_SET_LOADING](state, value) {
     state.loading = value
@@ -63,6 +69,8 @@ export const mutations = {
     state.error = value
   },
   [COIN_SET_MARKET_DATA](state, value) {
+    state.marketData = []
+
     state.marketData.push({
       name: 'coin.market.evolution24',
       value: value.market_data.price_change_percentage_24h
@@ -79,6 +87,8 @@ export const mutations = {
       name: 'coin.market.evolution30d',
       value: value.market_data.price_change_percentage_30d
     })
+
+    console.log(state.marketData)
   },
   [COIN_RESET_MARKET_DATA](state) {
     state.marketData = []

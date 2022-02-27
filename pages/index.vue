@@ -6,8 +6,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import loadStoredData from '@/mixins/loadStoredData'
 
 export default {
+  mixins: [loadStoredData],
   async fetch({ store }) {
     // for a better seo, without blocking the performance
     if (store.state.list.coins.length === 0) {

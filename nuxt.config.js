@@ -68,6 +68,15 @@ export default {
     ]
   },
 
+  // https://pwa.nuxtjs.org/workbox
+  workbox: {
+    runtimeCaching: [
+      {
+        urlPattern: 'https://api.coingecko.com/api/v3/.*',
+      }
+    ]
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

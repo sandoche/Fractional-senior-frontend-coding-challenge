@@ -16,6 +16,12 @@ export default {
   coin: {
     marketCap: 'Market cap',
     coingecko: 'View on CoinGecko',
-    website: 'Website'
+    website: 'Website',
+    market: {
+      evolution24: 'Market evolution (24h)',
+      evolution7d: 'Market evolution (7d)',
+      evolution14d: 'Market evolution (14d)',
+      evolution30d: 'Market evolution (30d)',
+    }
   }
 }

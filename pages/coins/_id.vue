@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="grid grid-cols-2 gap-8">
+    <div class="grid grid-cols-2 gap-8 mb-8">
       <base-card>
         <div class="flex flex-row mb-8">
           <img :src="image" class="w-16 h-16 mr-6" :alt="`Icon ${name}`" />
@@ -29,19 +29,17 @@
       </base-card>
       <base-card> GRAPH HERE </base-card>
     </div>
-    <div class="grid grid-cols-4 gap-8">xxx</div>
+    <CoinMarketData :data="marketData" />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import formatDollar from '@/filters/formatDollar'
-import formatPercentage from '@/filters/formatPercentage'
 
 export default {
   filters: {
-    formatDollar,
-    formatPercentage
+    formatDollar
   },
   async fetch({ store, route }) {
     await store.dispatch('coin/fetchCoin', route.params.id)
@@ -96,6 +94,30 @@ export default {
           this.marketInfo.links.homepage[0]) ||
         null
       )
+    },
+    marketData() {
+      const marketData = []
+
+      if (this.marketInfo.market_data) {
+        marketData.push({
+          name: this.$t('coin.market.evolution24'),
+          value: this.marketInfo.market_data.price_change_percentage_24h
+        })
+        marketData.push({
+          name: this.$t('coin.market.evolution7d'),
+          value: this.marketInfo.market_data.price_change_percentage_7d
+        })
+        marketData.push({
+          name: this.$t('coin.market.evolution14d'),
+          value: this.marketInfo.market_data.price_change_percentage_14d
+        })
+        marketData.push({
+          name: this.$t('coin.market.evolution30d'),
+          value: this.marketInfo.market_data.price_change_percentage_30d
+        })
+      }
+
+      return marketData
     }
   }
 }

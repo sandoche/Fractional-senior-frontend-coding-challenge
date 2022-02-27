@@ -1,6 +1,6 @@
 <template>
   <div class="px-4 py-5 sm:p-6">
-    <dt class="text-base font-normal text-gray-900">{{ name }}</dt>
+    <dt class="text-base font-normal text-gray-900">{{ $t(name) }}</dt>
     <dd class="mt-1 flex justify-between items-baseline md:block lg:flex">
       <div
         :class="[

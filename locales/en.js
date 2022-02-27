@@ -12,5 +12,10 @@ export default {
       ath_change: 'ATH Change',
       market_cap: 'Market cap'
     }
+  },
+  coin: {
+    marketCap: 'Market cap',
+    coingecko: 'View on CoinGecko',
+    website: 'Website'
   }
 }

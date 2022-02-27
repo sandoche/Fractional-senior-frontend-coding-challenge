@@ -77,6 +77,10 @@ export default {
     ]
   },
 
+  env: {
+    isBuilding: process.env.NODE_ENV === 'production'
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

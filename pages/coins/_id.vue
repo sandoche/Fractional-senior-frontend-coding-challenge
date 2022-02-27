@@ -86,7 +86,9 @@ export default {
   },
   mixins: [loadStoredData],
   async fetch({ store, route }) {
-    await store.dispatch('coin/fetchCoin', route.params.id)
+    if (process.env.isBuilding) {
+      await store.dispatch('coin/fetchCoin', route.params.id)
+    }
   },
   fetchOnServer: false,
   computed: {
@@ -150,6 +152,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('coin/initState', this.$route.params.id)
+    this.$store.dispatch('coin/fetchCoin', this.$route.params.id)
   },
   methods: {
     ...mapActions({ toggleFavorite: 'list/toggleFavorite' })

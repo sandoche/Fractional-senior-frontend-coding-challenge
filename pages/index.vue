@@ -11,8 +11,7 @@ import loadStoredData from '@/mixins/loadStoredData'
 export default {
   mixins: [loadStoredData],
   async fetch({ store }) {
-    // for a better seo, without blocking the performance
-    if (store.state.list.coins.length === 0) {
+    if (process.env.isBuilding) {
       await store.dispatch('list/fetchCoins')
     }
   },

@@ -68,7 +68,7 @@
             </base-button-link>
           </div>
         </base-card>
-        <CoinMarketData :data="marketData" />
+        <CoinMarketData v-if="marketData.length > 0" :data="marketData" />
       </div>
       <base-card> <CoinMarketChart :coin="id" /> </base-card>
     </div>
@@ -83,17 +83,14 @@ export default {
   filters: {
     formatDollar
   },
-  async fetch({ store, route }) {
-    await store.dispatch('coin/fetchCoin', route.params.id)
-  },
-  fetchOnServer: false,
   computed: {
     ...mapGetters({
       basicInfo: 'coin/basicInfo',
       marketInfo: 'coin/marketInfo',
       loading: 'coin/loading',
       error: 'coin/error',
-      favouritesIds: 'list/favouritesIds'
+      favouritesIds: 'list/favouritesIds',
+      marketData: 'coin/marketData'
     }),
     id() {
       return this.basicInfo.id || this.marketInfo.id
@@ -141,33 +138,12 @@ export default {
         null
       )
     },
-    marketData() {
-      const marketData = []
-
-      if (this.marketInfo.market_data) {
-        marketData.push({
-          name: this.$t('coin.market.evolution24'),
-          value: this.marketInfo.market_data.price_change_percentage_24h
-        })
-        marketData.push({
-          name: this.$t('coin.market.evolution7d'),
-          value: this.marketInfo.market_data.price_change_percentage_7d
-        })
-        marketData.push({
-          name: this.$t('coin.market.evolution14d'),
-          value: this.marketInfo.market_data.price_change_percentage_14d
-        })
-        marketData.push({
-          name: this.$t('coin.market.evolution30d'),
-          value: this.marketInfo.market_data.price_change_percentage_30d
-        })
-      }
-
-      return marketData
-    },
     isFavourite() {
       return this.favouritesIds.includes(this.id)
     }
+  },
+  mounted() {
+    this.$store.dispatch('coin/fetchCoin', this.$route.params.id)
   },
   methods: {
     ...mapActions({ toggleFavorite: 'list/toggleFavorite' })

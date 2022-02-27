@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import formatDollar from '@/filters/formatDollar'
 import formatPercentage from '@/filters/formatPercentage'
 
@@ -106,14 +106,18 @@ export default {
     image: {
       type: String,
       required: true
-    },
-    isFavourite: {
-      type: Boolean,
-      required: true
     }
   },
   methods: {
     ...mapActions({ toggleFavorite: 'list/toggleFavorite' })
+  },
+  computed: {
+    ...mapGetters({
+      favouritesIds: 'list/favouritesIds'
+    }),
+    isFavourite() {
+      return this.favouritesIds.includes(this.id)
+    }
   }
 }
 </script>

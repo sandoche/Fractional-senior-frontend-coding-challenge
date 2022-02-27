@@ -66,7 +66,6 @@
                 :ath-change="coin.ath_change_percentage"
                 :market-cap="coin.market_cap"
                 :image="coin.image"
-                :is-favourite="coin.isFavourite"
               ></coins-table-item>
             </tbody>
           </table>

@@ -16,7 +16,7 @@ export const state = () => ({
   },
   loading: false,
   error: false,
-  favorites: []
+  favourites: []
 })
 
 export const getters = {
@@ -26,9 +26,10 @@ export const getters = {
   error: (state) => state.error,
   favourites: (state) => {
     return state.coins.filter((coin) => {
-      return state.favorites.includes(coin.id)
+      return state.favourites.includes(coin.id)
     })
-  }
+  },
+  favouritesIds: (state) => state.favourites
 }
 
 export const actions = {
@@ -63,11 +64,11 @@ export const mutations = {
     state.error = value
   },
   [LIST_TOGGLE_FAVORITE](state, id) {
-    const index = state.favorites.indexOf(id)
+    const index = state.favourites.indexOf(id)
     if (index === -1) {
-      state.favorites.push(id)
+      state.favourites.push(id)
     } else {
-      state.favorites.splice(index, 1)
+      state.favourites.splice(index, 1)
     }
   }
 }

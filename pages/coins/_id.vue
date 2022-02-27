@@ -1,5 +1,6 @@
 <template>
   <div>
+    <base-alert v-if="error" class="mb-8">{{ $t('generic.error') }}</base-alert>
     <div class="grid grid-cols-2 gap-8 mb-8">
       <div>
         <base-card>

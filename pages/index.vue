@@ -1,6 +1,8 @@
 <template>
   <div>
-    <CoinsTable :coins="coins" :sorting="sorting" />
+    <base-alert v-if="error" class="mb-8">{{ $t('generic.error') }}</base-alert>
+    <CoinsTableLoading v-if="loading && coins.length === 0" />
+    <CoinsTable v-else :coins="coins" :sorting="sorting" />
   </div>
 </template>
 

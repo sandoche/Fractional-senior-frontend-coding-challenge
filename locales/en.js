@@ -23,5 +23,10 @@ export default {
       evolution14d: 'Market evolution (14d)',
       evolution30d: 'Market evolution (30d)',
     }
+  },
+  favourites: {
+    emptyTitle: 'No favourites yet.',
+    emptyText: 'Explore some coins and click on the star icon to add them to your favourites.',
+    button: 'Explore coins'
   }
 }

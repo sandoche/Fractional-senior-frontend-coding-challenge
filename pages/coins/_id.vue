@@ -6,11 +6,13 @@
           <div class="flex flex-row mb-8">
             <img :src="image" class="w-16 h-16 mr-6" :alt="`Icon ${name}`" />
             <div>
-              <h1 class="text-4xl bolder text-gray-900 mb-1">{{ name }}</h1>
+              <h1 class="text-4xl font-bolder text-gray-900 mb-1">
+                {{ name }}
+              </h1>
               <p class="text-xl text-gray-500 uppercase">{{ symbol }}</p>
             </div>
             <div class="flex-1 text-right">
-              <p class="text-4xl bolder text-gray-900 mb-2">
+              <p class="text-4xl font-bolder text-gray-900 mb-2">
                 {{ price | formatDollar }}
               </p>
               <p class="text-sm text-gray-500">

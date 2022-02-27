@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ marketInfo }}
+    {{ basicInfo.id || marketInfo.id }}
   </div>
 </template>
 

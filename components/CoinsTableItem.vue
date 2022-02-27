@@ -9,6 +9,7 @@
             'w-5',
             'mr-5',
             'cursor-pointer',
+            'fill-gray-300',
             'hover:fill-yellow-500',
             { 'fill-yellow-500': isFavourite }
           ]"

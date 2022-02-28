@@ -66,6 +66,32 @@ $ npm run generate
 
 ### Project description
 
+#### In short
+
+I built the webapp Coinslim, a clutter-free list of the top 100 cryptocurrency.
+
+Coinslim lets you sort the cryptocurrency using a few criterias, favourites them, search any cryptocurrency listed in CoinGecko, and see a financial summary of each coin.
+
 👉 https://coinslim.netlify.app
 
-> Work in progress
+#### Tech stack
+
+CoinSlim is built with Nuxt.js, here is the detailled stack:
+
+- Nuxt.js (v2.15.7) — SSR mode — that comes with Vue.js (v2.6.12)
+- Vuex — for the state management
+- Axios — for the HTTPs calls
+- i18n plugin — in order to have all the strings well separated from the templates
+- PWA plugin — for the offline mode
+- Tailwind CSS & Tailwind UI — to make the style faster to implement
+- PostCSS — to have some enhanced CSS features
+- ES Lint, Style Lint, Prettier, Husky — to ensure a clean code style
+- Cypress — for E2E Testing
+
+Nuxt.js is my default choice when building a website because I love using Vue, and Nuxt lets you code with vue and generate the static website. CoinSlim is therefore built with the `static` target in order to not only have a SEO friendly website and also to take advantage of free static website hosting such as Netlify.
+
+I chose to use the options API instead of the composition API, because I am more used to it, and the project is small enough to have a simple code without the need of it.
+
+Also, I decided to use Tailwind UI, that I recently purchased the license of for a project, to avoid reinventing the wheel and therefore build the website faster. If you want to see some code I wrote without any CSS Frameworks I invite you to check my projects on my website — https://www.sandoche.com.
+
+#### Design & high-level decisions

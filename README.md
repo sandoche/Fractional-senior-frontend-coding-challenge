@@ -68,69 +68,68 @@ $ npm run generate
 
 #### In short
 
-I built the webapp Coinslim, a clutter-free list of the top 100 cryptocurrency.
+I built the web app Coinslim, a clutter-free list of the top 100 cryptocurrencies.
 
-Coinslim lets you sort the cryptocurrency using a few criterias, favourites them, search any cryptocurrency listed in CoinGecko, and see a financial summary of each coin. It can also be installed as PWA with offline mode!
+Coinslim lets you sort the cryptocurrency using a few criteria, favorites them, search any cryptocurrency listed in CoinGecko, and see a financial summary of each coin. It can also be installed as PWA with an offline mode!
 
 👉 https://coinslim.netlify.app
 
 #### Tech stack
 
-CoinSlim is built with Nuxt.js, here is the detailled stack:
+CoinSlim is built with Nuxt.js, here is the detailed stack:
 
 - Nuxt.js (v2.15.7) — SSR mode — that comes with Vue.js (v2.6.12)
 - Vuex — for the state management
-- Axios — for the HTTPs calls
-- i18n plugin — in order to have all the strings well separated from the templates
+- Axios — for the HTTP calls
+- i18n plugin — to have all the strings well separated from the templates
 - PWA plugin — for the offline mode
 - Tailwind CSS & Tailwind UI — to make the style faster to implement
 - PostCSS — to have some enhanced CSS features
 - ES Lint, Style Lint, Prettier, Husky — to ensure a clean code style
 - Cypress — for E2E Testing
 
-Nuxt.js is my default choice when building a website because I love using Vue, and Nuxt lets you code with vue and generate the static website. CoinSlim is therefore built with the `static` target in order to not only have a SEO friendly website and also to take advantage of free static website hosting such as Netlify.
+Nuxt.js is my default choice when building a website because I love using Vue, and Nuxt lets you code with vue and generate the static website. CoinSlim is therefore built with the static target to not only have an SEO-friendly website and also to take advantage of free static website hosting such as Netlify.
 
-I chose to use the options API instead of the composition API, because I am more used to it, and the project is small enough to have a simple code without the need of it.
+I chose to use the options API instead of the composition API, because I am more used to it, and the project is small enough to have a simple code without the need for it.
 
-Also, I decided to use Tailwind UI, that I recently purchased the license of for a project, to avoid reinventing the wheel and therefore build the website faster. If you want to see some code I wrote without any CSS Frameworks I invite you to check my projects on my website — https://www.sandoche.com.
+Also, I decided to use Tailwind UI, which I recently purchased the license of for a project, to avoid reinventing the wheel and therefore build the website faster. If you want to see some code I wrote without any CSS Frameworks I invite you to check my projects on my website — https://www.sandoche.com.
 
 #### Design & high-level decisions
 
-When I have to build a website from scratch, I usually try to understand the need and to know who is the targeted user. Since these information were not provided and it was stated "If anything above feels unclear, please use your own judgement to make assumptions" I did my own assumptions.
+When I have to build a website from scratch, I usually try to understand the need and to know who is the targeted user. Since this information was not provided and it was stated "If anything above feels unclear, please use your own judgement to make assumptions" I did my own assumptions.
 
-In order to make something useful, I decided to make a "clutter-free" alternative to coingecko or coinmarketcap, both those websites are full of information everywhere and we can easily loose focus. That is why I focused on having a clean and readable interface. Also I decided to display in the front page information related to the All time high that we don't usually see and can be interesting for a user.
+To make something useful, I decided to make a "clutter-free" alternative to Coingecko or Coinmarketcap, both those websites are full of information everywhere and we can easily lose focus. That is why I focused on having a clean and readable interface. Also, I decided to display on the front page information related to the All-time high that we don't usually see and can be interesting for a user.
 
-I had to make a few other decisions, that I will decribe below.
+I had to make a few other decisions, that I will describe below.
 
 ##### Search
 
-It wasn't clear if I should have implemented a search filter on the top 100 or a search using the API.
-The API of Coingecko being pretty fast, I decided to go for the use of it. Also it makes the website more future-proof, in case it will be expanded to more than 100 cryptos.
+It wasn't clear if I should have implemented a search filter on the top 100 or a search using the API. The API of Coingecko being pretty fast, I decided to go for the use of it. Also, it makes the website more future-proof, in case it will be expanded to more than 100 cryptos.
 
 ##### Coin details page
 
-The requirements said "Create a list of the top 100 coins" I wasn't sure if it was only a "dull list" of coins only or a list similar to coingecko / coinmarket cap that lets you click to see details. Because a "dull list" doesn't give much info to the user, I decided to make a simple page, with a few informations and most important: a link to the original website, and a link to the details from coingecko. I was intially going for a solution in between: a page for each coin that would redirect to coingecko, but because the effort to make it as a full page was little I went for that.
+The requirements said "Create a list of the top 100 coins" I wasn't sure if it was only a "dull list" of coins only or a list similar to Coingecko / Coinmarketcap that lets you click to see details. Because a "dull list" doesn't give much info to the user, I decided to make a simple page, with a few pieces of information and most important: a link to the original website, and a link to the details from Coingecko. I was initially going for a solution in between a page for each coin that would redirect to Coingecko, but because the effort to make it as a full page was little I went for that.
 
 ##### Async HTTP Requests
 
-I had to choose between have blocking HTTP requests that are done before the loading of the page, or after. I went for queries that comes after the page starts to load in order to gives the feeling of speed to the user. Nevertheless I did it in a way the static generation would pre-generate all the pages for better SEO. We could imagine that in the future a CRON based generation of the static pages can be done. Or to use SSR instead of static pages.
+I had to choose between have blocking HTTP requests that are done before the loading of the page, or after. I went for queries that come after the page starts to load to give the feeling of speed to the user. Nevertheless, I did it in a way the static generation would pre-generate all the pages for better SEO. We could imagine that in the future a CRON-based generation of the static pages can be done. Or to use SSR instead of static pages.
 
 ##### Pagination
 
 Because it was saying "100 coins", I didn't go for pagination.
 
-##### State persistance
+##### State persistence
 
-I had the option between using a library that handle the state persistance or to code it myself with the local storage. Having a previous experience in the past with the library I prefered to do it myself to have more flexibility.
+I had the option between using a library that handles the state persistence or coding it myself with the local storage. Having a previous experience in the past with the library I preferred to do it myself to have more flexibility.
 
 ##### Mockups & Architecture
 
-I did some low fidelity mockup after taking the decision above, you can see them here: https://github.com/sandoche/Fractional-senior-frontend-coding-challenge/issues/1#issuecomment-1052381901
+I did some low fidelity mockups after taking the decision above, you can see them here: https://github.com/sandoche/Fractional-senior-frontend-coding-challenge/issues/1#issuecomment-1052381901
 
-I then listed the routes / components, more details here: https://github.com/sandoche/Fractional-senior-frontend-coding-challenge/issues/2#issuecomment-1052389337
+I then listed the routes/components, more details here: https://github.com/sandoche/Fractional-senior-frontend-coding-challenge/issues/2#issuecomment-1052389337
 
 ##### Tests
 
-Because it was optional, I only did one test, in order to try Cypress that I haven't used before. But I saw it in your job offer.
+Because it was optional, I only did one test, to try Cypress that I haven't used before. But I saw it in your job offer.
 
-That's all! If you have any question contact me.
+That's all! If you have any questions contact me.

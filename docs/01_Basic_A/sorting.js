@@ -75,15 +75,15 @@ const sortAllTheArraysAndCalculateTimeOfExecution = (arrayOfArray) => {
 // We execute the function NUMBER_OF_ARRAYS times
 // Then we multiply the time of execution by the quotient of NUMBER_OF_ARRAYS / ONE_BILLION
 
-const NUMBER_OF_ARRAYS = 10 ** 7;
+const NUMBER_OF_ARRAYS = 10 ** 6;
 const SIZE_OF_ARRAY = 11;
-const ONE_BILLION = 10 ** 10;
+const TEN_BILLION = 10 ** 10;
 
-const quotient = ONE_BILLION / NUMBER_OF_ARRAYS;
+const quotient = TEN_BILLION / NUMBER_OF_ARRAYS;
 
 const arrayOfArrays = createArrayOfArraysOfSmallNumbers(NUMBER_OF_ARRAYS, SIZE_OF_ARRAY);
 const timeOfSortingManyArrays = sortAllTheArraysAndCalculateTimeOfExecution(arrayOfArrays);
 
 console.log(`Time of sorting ${NUMBER_OF_ARRAYS} arrays: ${timeOfSortingManyArrays} ms`);
-console.log(`Estimated time of sorting One billion arrays: ${quotient * timeOfSortingManyArrays} ms`);
-console.log(`In seconds: ${quotient * timeOfSortingManyArrays / 1000} s`);
+console.log(`Estimated time of sorting ten billion arrays: ${quotient * timeOfSortingManyArrays} ms`);
+console.log(`In minutes: ${quotient * timeOfSortingManyArrays / 1000 / 60} min`);

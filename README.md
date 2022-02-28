@@ -14,9 +14,9 @@ I commented the code to explain the different steps. By running `npm run basic:a
 Output example:
 
 ```
-Time of sorting 10000000 arrays: 1638 ms
-Estimated time of sorting One billion arrays: 1638000 ms
-In seconds: 1638 s
+Time of sorting 1000000 arrays: 212 ms
+Estimated time of sorting ten billion arrays: 2120000 ms
+In minutes: 35.333333333333336 min
 ```
 
 ### B

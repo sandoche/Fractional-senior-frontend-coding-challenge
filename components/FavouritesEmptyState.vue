@@ -1,5 +1,5 @@
 <template>
-  <div class="p-32 flex items-center justify-center flex-col">
+  <div class="p-4 lg:p-32 flex items-center justify-center flex-col">
     <div
       class="
         h-64

@@ -14,7 +14,8 @@
     "prepare": "husky install",
     "lint": "npm run lint:js && npm run lint:style",
     "lint:fix": "npm run lint:js:fix && npm run lint:style:fix",
-    "basic:a": "node docs/01_Basic_A/sorting.js"
+    "basic:a": "node docs/01_Basic_A/sorting.js",
+    "cypress:open": "cypress open"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint",
@@ -35,6 +36,7 @@
     "@nuxtjs/tailwindcss": "^4.2.0",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.2",
+    "cypress": "^9.5.0",
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-nuxt": "^2.0.0",

@@ -56,6 +56,12 @@ $ npm install
 # serve with hot reload at localhost:3000
 $ npm run dev
 
+# run tests (requires the devserver to be on)
+$ npm test
+
+# run cypress (requires the devserver to be on)
+$ npm run cypress:open
+
 # build for production and launch server
 $ npm run build
 $ npm run start

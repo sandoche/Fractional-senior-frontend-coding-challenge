@@ -131,4 +131,6 @@ I then listed the routes / components, more details here: https://github.com/san
 
 ##### Tests
 
-> Todo
+Because it was optional, I only did one test, in order to try Cypress that I haven't used before. But I saw it in your job offer.
+
+That's all! If you have any question contact me.

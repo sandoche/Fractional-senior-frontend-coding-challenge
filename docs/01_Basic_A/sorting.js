@@ -19,11 +19,9 @@ const createArrayOfSmallNumbers = (size) => {
 */
 
 const insertionSort = (array) => {
-  const arrayLength = array.length;
-
   // We start with one card on the left hand, the index 0 of the array that is why the loop starts at 1
   // Array[i] is the card we are taking from the right hand - the unsorted array
-  for (let i = 1; i < arrayLength; i++) {
+  for (let i = 1; i < array.length; i++) {
     const current = array[i];
 
     // We take the index of the first card from the left hand - the sorted array

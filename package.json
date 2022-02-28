@@ -15,7 +15,8 @@
     "lint": "npm run lint:js && npm run lint:style",
     "lint:fix": "npm run lint:js:fix && npm run lint:style:fix",
     "basic:a": "node docs/01_Basic_A/sorting.js",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "test": "cypress run"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint",

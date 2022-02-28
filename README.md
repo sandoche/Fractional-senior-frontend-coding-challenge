@@ -70,7 +70,7 @@ $ npm run generate
 
 I built the web app Coinslim, a clutter-free list of the top 100 cryptocurrencies.
 
-Coinslim lets you sort the cryptocurrency using a few criteria, favorites them, search any cryptocurrency listed in CoinGecko, and see a financial summary of each coin. It can also be installed as PWA with an offline mode!
+Coinslim lets you sort the cryptocurrency using a few criteria, save your favourites, search any cryptocurrency listed in CoinGecko, and see a financial summary of each coin. It can also be installed as PWA with an offline mode!
 
 👉 https://coinslim.netlify.app
 
@@ -88,11 +88,12 @@ CoinSlim is built with Nuxt.js, here is the detailed stack:
 - ES Lint, Style Lint, Prettier, Husky — to ensure a clean code style
 - Cypress — for E2E Testing
 
-Nuxt.js is my default choice when building a website because I love using Vue, and Nuxt lets you code with vue and generate the static website. CoinSlim is therefore built with the static target to not only have an SEO-friendly website and also to take advantage of free static website hosting such as Netlify.
+I took a few technical choices:
 
-I chose to use the options API instead of the composition API, because I am more used to it, and the project is small enough to have a simple code without the need for it.
-
-Also, I decided to use Tailwind UI, which I recently purchased the license of for a project, to avoid reinventing the wheel and therefore build the website faster. If you want to see some code I wrote without any CSS Frameworks I invite you to check my projects on my website — https://www.sandoche.com.
+- I use the `static` target to make it SEO Friendly
+- I am using the options API instead of the composition API because the code is simple enough
+- I decided to use Tailwind UI to avoid reinventing the wheel and therefore build the website faster
+- I had the option between using a library that handles the state persistence or coding it myself with the local storage. Having a previous experience in the past with the library I preferred to do it myself to have more flexibility
 
 #### Design & high-level decisions
 
@@ -100,36 +101,17 @@ When I have to build a website from scratch, I usually try to understand the nee
 
 To make something useful, I decided to make a "clutter-free" alternative to Coingecko or Coinmarketcap, both those websites are full of information everywhere and we can easily lose focus. That is why I focused on having a clean and readable interface. Also, I decided to display on the front page information related to the All-time high that we don't usually see and can be interesting for a user.
 
-I had to make a few other decisions, that I will describe below.
+I had to make a few other decisions that I summarized below:
 
-##### Search
+- Coin details page — Although it wasn't cleary asked, all the coins lists links to a coin detail page, so I decided to go for it
+- Search — Use of the Coingecko API instead of a search filter, because the API is fast enough and makes the website "future-proof" in case it will be expanded to more than 100 cryptos
+- Pagination — Because the requirements was saying "100 coins", I didn't go for pagination.
+- Tests — Because it was optional, I only did one test, to try Cypress that I saw among your stack and that haven't used before
 
-It wasn't clear if I should have implemented a search filter on the top 100 or a search using the API. The API of Coingecko being pretty fast, I decided to go for the use of it. Also, it makes the website more future-proof, in case it will be expanded to more than 100 cryptos.
+#### Mockups & Architecture
 
-##### Coin details page
-
-The requirements said "Create a list of the top 100 coins" I wasn't sure if it was only a "dull list" of coins only or a list similar to Coingecko / Coinmarketcap that lets you click to see details. Because a "dull list" doesn't give much info to the user, I decided to make a simple page, with a few pieces of information and most important: a link to the original website, and a link to the details from Coingecko. I was initially going for a solution in between a page for each coin that would redirect to Coingecko, but because the effort to make it as a full page was little I went for that.
-
-##### Async HTTP Requests
-
-I had to choose between have blocking HTTP requests that are done before the loading of the page, or after. I went for queries that come after the page starts to load to give the feeling of speed to the user. Nevertheless, I did it in a way the static generation would pre-generate all the pages for better SEO. We could imagine that in the future a CRON-based generation of the static pages can be done. Or to use SSR instead of static pages.
-
-##### Pagination
-
-Because it was saying "100 coins", I didn't go for pagination.
-
-##### State persistence
-
-I had the option between using a library that handles the state persistence or coding it myself with the local storage. Having a previous experience in the past with the library I preferred to do it myself to have more flexibility.
-
-##### Mockups & Architecture
-
-I did some low fidelity mockups after taking the decision above, you can see them here: https://github.com/sandoche/Fractional-senior-frontend-coding-challenge/issues/1#issuecomment-1052381901
+I did some low fidelity mockups after taking the decisions stated above, you can see them here: https://github.com/sandoche/Fractional-senior-frontend-coding-challenge/issues/1#issuecomment-1052381901
 
 I then listed the routes/components, more details here: https://github.com/sandoche/Fractional-senior-frontend-coding-challenge/issues/2#issuecomment-1052389337
-
-##### Tests
-
-Because it was optional, I only did one test, to try Cypress that I haven't used before. But I saw it in your job offer.
 
 That's all! If you have any questions contact me.

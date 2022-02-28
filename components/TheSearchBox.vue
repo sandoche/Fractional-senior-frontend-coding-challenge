@@ -141,9 +141,11 @@
               d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <p class="mt-4 font-semibold text-gray-900">No results found</p>
+          <p class="mt-4 font-semibold text-gray-900">
+            {{ $t('search.no_result_title') }}
+          </p>
           <p class="mt-2 text-gray-500">
-            No components found for this search term. Please try again.
+            {{ $t('search.no_result_text') }}
           </p>
         </div>
       </div>

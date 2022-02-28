@@ -32,5 +32,9 @@ export default {
     emptyTitle: 'No favourites yet.',
     emptyText: 'Explore some coins and click on the star icon to add them to your favourites.',
     button: 'Explore coins'
+  },
+  search: {
+    no_result_title: 'No results found',
+    no_result_text: 'No coin found for this search term. Please try again.',
   }
 }

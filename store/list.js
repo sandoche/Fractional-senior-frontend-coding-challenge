@@ -1,5 +1,6 @@
 import api from '@/api'
 import localStorageHelper from '@/utils/localStorageHelper'
+import createSortingFunction from '@/utils/createSortingFunction'
 import { FAVOURITES, COINS } from '@/constants/storages-types'
 import {
   LIST_SET_COINS,
@@ -27,10 +28,15 @@ export const getters = {
   loading: (state) => state.loading,
   error: (state) => state.error,
   favourites: (state) => {
-    return state.favourites.map(favourite => {
+    const { field, direction } = state.sorting
+    const sortingFunction = createSortingFunction(field, direction)
+
+    const favourites = state.favourites.map(favourite => {
       const coin = state.coins.find(coin => coin.id === favourite)
       return coin
     })
+
+    return favourites.sort(sortingFunction)
   },
   favouritesIds: (state) => state.favourites,
   favouritesCount: (state) => state.favourites.length
@@ -41,12 +47,13 @@ export const actions = {
     commit(LIST_SET_COINS, localStorageHelper.retrieve(COINS, []))
     commit(LIST_SET_FAVOURITES, localStorageHelper.retrieve(FAVOURITES, []))
   },
-  async fetchCoins({ commit }) {
+  async fetchCoins({ commit, state }) {
     try {
       commit(LIST_SET_ERROR, false)
       commit(LIST_SET_LOADING, true)
       const coins = await api.list.fetchCoins(this.$axios)
       commit(LIST_SET_COINS, coins)
+      commit(LIST_APPLY_SORTING, state.sorting)
     } catch (error) {
       commit(LIST_SET_ERROR, true)
     } finally {
@@ -68,22 +75,8 @@ export const mutations = {
   },
   [LIST_APPLY_SORTING](state, { field, direction }) {
     state.sorting = { field, direction }
-    state.coins = state.coins.sort((a, b) => {
-      if (direction === 'asc') {
-        if (typeof a[field] === 'string') {
-          return a[field].toLowerCase() <= b[field].toLowerCase() ? -1 : 1
-        } else {
-          return a[field] <= b[field] ? -1 : 1
-        }
-      } else {
-        // eslint-disable-next-line
-        if (typeof a[field] === 'string') {
-          return a[field].toLowerCase() > b[field].toLowerCase() ? -1 : 1
-        } else {
-          return a[field] > b[field] ? -1 : 1
-        }
-      }
-    })
+    const sortingFunction = createSortingFunction(field, direction)
+    state.coins = state.coins.sort(sortingFunction)
   },
   [LIST_SET_LOADING](state, value) {
     state.loading = value

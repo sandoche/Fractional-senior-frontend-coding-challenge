@@ -5,6 +5,7 @@
         <svg
           xmlns="http://www.w3.org/2000/svg"
           :class="[
+            'star',
             'h-5',
             'w-5',
             'mr-5',
@@ -38,7 +39,7 @@
             />
           </div>
           <div class="ml-4">
-            <div class="text-sm font-medium text-gray-900">{{ name }}</div>
+            <div class="text-sm font-medium text-gray-900 name">{{ name }}</div>
             <div class="text-sm text-gray-500 uppercase">{{ symbol }}</div>
           </div>
         </div>

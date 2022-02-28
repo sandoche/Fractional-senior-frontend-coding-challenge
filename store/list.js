@@ -41,12 +41,13 @@ export const actions = {
     commit(LIST_SET_COINS, localStorageHelper.retrieve(COINS, []))
     commit(LIST_SET_FAVOURITES, localStorageHelper.retrieve(FAVOURITES, []))
   },
-  async fetchCoins({ commit }) {
+  async fetchCoins({ commit, state }) {
     try {
       commit(LIST_SET_ERROR, false)
       commit(LIST_SET_LOADING, true)
       const coins = await api.list.fetchCoins(this.$axios)
       commit(LIST_SET_COINS, coins)
+      commit(LIST_APPLY_SORTING, state.sorting)
     } catch (error) {
       commit(LIST_SET_ERROR, true)
     } finally {

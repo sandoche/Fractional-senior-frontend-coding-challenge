@@ -3,15 +3,20 @@
     <base-alert v-if="error && loading" class="mb-8">{{
       $t('generic.error')
     }}</base-alert>
-    <div class="grid grid-cols-2 gap-8 mb-8">
+    <div class="grid lg:grid-cols-2 gap-8 mb-8">
       <div>
         <base-card>
           <div class="flex mb-8">
-            <img :src="image" class="w-16 h-16 mr-6" :alt="`Icon ${name}`" />
+            <img
+              :src="image"
+              class="w-12 h-12 md:w-16 md:h-16 mr-2 md:mr-6"
+              :alt="`Icon ${name}`"
+            />
             <div>
               <h1
                 class="
-                  text-4xl
+                  text-2xl
+                  lg:text-4xl
                   font-bolder
                   text-gray-900
                   mb-1
@@ -21,12 +26,15 @@
               >
                 {{ name }}
               </h1>
-              <p class="text-xl text-gray-500 uppercase">{{ symbol }}</p>
+              <p class="text-lg lg:text-xl text-gray-500 uppercase">
+                {{ symbol }}
+              </p>
             </div>
             <div class="flex-1 text-right">
               <p
                 class="
-                  text-4xl
+                  text-2xl
+                  lg:text-4xl
                   font-bolder
                   text-gray-900
                   mb-2
@@ -38,9 +46,11 @@
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   :class="[
-                    'h-10',
-                    'w-10',
-                    't-2',
+                    'h-6',
+                    'w-6',
+                    'md:h-10',
+                    'md:w-10',
+                    'top-1',
                     'relative',
                     'cursor-pointer',
                     'fill-gray-300',

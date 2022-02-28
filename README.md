@@ -56,10 +56,10 @@ $ npm install
 # serve with hot reload at localhost:3000
 $ npm run dev
 
-# run tests (requires the devserver to be on)
+# run tests (requires the dev server to be running)
 $ npm test
 
-# run cypress (requires the devserver to be on)
+# run cypress (requires the dev server to be running)
 $ npm run cypress:open
 
 # build for production and launch server
@@ -76,7 +76,7 @@ $ npm run generate
 
 I built the web app Coinslim, a clutter-free list of the top 100 cryptocurrencies.
 
-Coinslim lets you sort the cryptocurrency using a few criteria, save your favourites, search any cryptocurrency listed in CoinGecko, and see a financial summary of each coin. It can also be installed as PWA with an offline mode!
+Coinslim lets you sort the cryptocurrency using a few criterias, save your favourites, search any cryptocurrency listed in CoinGecko, and see a financial summary of each coin. It can also be installed as a PWA with an offline mode!
 
 👉 https://coinslim.netlify.app
 
@@ -105,11 +105,11 @@ I took a few technical choices:
 
 When I have to build a website from scratch, I usually try to understand the need and to know who is the targeted user. Since this information was not provided and it was stated "If anything above feels unclear, please use your own judgement to make assumptions" I did my own assumptions.
 
-To make something useful, I decided to make a "clutter-free" alternative to Coingecko or Coinmarketcap, both those websites are full of information everywhere and we can easily lose focus. That is why I focused on having a clean and readable interface. Also, I decided to display on the front page information related to the All-time high that we don't usually see and can be interesting for a user.
+To make something useful, I decided to make a "clutter-free" alternative to Coingecko or Coinmarketcap, both those websites are full of information everywhere and we can easily loose focus. That is why I focused on having a clean and readable interface. Also, I decided to display on the front page information related to the All-time high that we don't usually see and can be interesting for a user.
 
 I had to make a few other decisions that I summarized below:
 
-- Coin details page — Although it wasn't cleary asked, all the coins lists links to a coin detail page, so I decided to go for it
+- Coin details page — Although it wasn't cleary asked, all the coins lists sites (such as Coinmarketcap, Coingecko) link to a coin detail page, so I decided to go for it
 - Search — Use of the Coingecko API instead of a search filter, because the API is fast enough and makes the website "future-proof" in case it will be expanded to more than 100 cryptos
 - Pagination — Because the requirements was saying "100 coins", I didn't go for pagination.
 - Tests — Because it was optional, I only did one test, to try Cypress that I saw among your stack and that haven't used before
